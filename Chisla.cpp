@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <cmath>
 using namespace std;
 
@@ -13,8 +13,7 @@ void simple(int n)
 			number++;
 			i++;
 		}
-		int c;
-		c = 0;
+		int c = 0;
 		sq = (int)sqrt(number);
 		for (int k = 2; k <= sq; k++)
 		{
@@ -53,5 +52,5 @@ int main()
 			break;
 		}
 	}
-	return 0;
+	return 32;
 }
