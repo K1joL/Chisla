@@ -2,55 +2,65 @@
 #include <cmath>
 using namespace std;
 
-void simple(int n)
+void Prime(int n)
 {
-	int i = 1, number = 2, sq;
-	while (i <= n)
+	long int primenum[10000] = {0};
+	int primeindex = 0, sq = 0;
+	for (long int num = 2; primeindex < n-1; num += 2)
 	{
-		if (i == 1)
+		if (num == 2)
 		{
-			cout << number << ' ';
-			number++;
-			i++;
+			cout << num << ' ';
+			num++;
 		}
-		int c = 0;
-		sq = (int)sqrt(number);
-		for (int k = 2; k <= sq; k++)
+
+		sq = (int)sqrt(num);
+		int countD = 0;
+		for (int i = 1; i <= sq; i += 2)
 		{
-			if (number % k == 0) 
+			int primeD = 0;
+			for (int j = 0; j < 20; j++)
 			{
-				c++;
-				number++;
+				if (primenum[j])
+				{
+					if (num % primenum[j] == 0)
+					{
+						primeD++;
+						break;
+					}
+				}
+				else 
+				{ 
+					break; 
+				}
+			}
+			if (primeD)
+			{
+				break;
+			}
+			if (num % i == 0)
+			{
+				countD++;
 				break;
 			}
 		}
-		if ((c == 0))
+		if (countD)
 		{
-			cout << number << ' ';
-			number++;
-			i++;
+			if (primenum[primeindex] == 0)
+			{
+				primenum[primeindex] = num;
+				primeindex++;
+			}
+			cout << num << ' ';
 		}
 	}
 }
 int main()
 {
-	setlocale(LC_ALL, "Russian");
-
 	int n;
-	char exit;
-	while (true)
-	{
-		cout << "\nВведите количество чисел\n";
-		cin >> n;
-		simple(n);
-		cout << '\n';
+	cout << "\nEnter number of numbers\n";
+	cin >> n;
+	Prime(n);
 
-		cout << "Если хотите выйти из программы введите 'x': ";
-		cin >> exit;
-		if (exit == 'x')
-		{
-			break;
-		}
-	}
 	return 32;
 }
